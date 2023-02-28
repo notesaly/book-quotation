@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html>
+  <head> <title>Percetakan Tabah</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+    <style>
+         .materialTable, tr {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        
+        .finishingTable {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+
+        
+        </style>
+<body>
+
+ 
+  <div id="item">
+<fieldset> <legend><h2>7 x 10 Specification </h2></legend>
+<!-- specification of books -->
+
+<table>
+
+    <!-- title -->
+    <tr>   <th width="150">Specification</th>
+        <th>Value</th>
+    </tr>
+
+<!-- details specification -->
+
+<tr>
+  <td><span>Pages </span></td>
+  <td><input type="number" id="mukasurat" class="specification" onchange="calculate_plate()"/></td>
+</tr>   
+
+<tr>
+  <td><span>Size </span></td>
+  <td> <div>
+    <p>7 x 10</p>
+    </div></td>
+</tr>  
+
+<tr>
+    <td><span>Material Cost  <b>(RM)</b> </span></td>
+    <td><input type="number" id="material"/></td>
+</tr>  
+
+    <tr>
+      <td><span>Quantity </span></td>
+      <td><input type="number" id="qty" class="rim"/></td>
+  </tr> 
+
+    <tr>
+        <td><span>Color </span></td>
+        <td> <div>
+            <input type="radio" id="b&w" name="printing" value="1">
+            <label for="black">Black & White</label>
+          </div>
+      
+      
+          <div>
+            <input type="radio" id="cmyk" name="printing" value="4">
+            <label for="cmyk">Coloured</label>
+          </div></td>
+    </tr>  
+    <tr>
+
+    
+    <tr>
+        <td><span>Extra Quantities </span></td>
+        <td><input type="number" id="extraqty" class="rim"/></td>
+    </tr>
+
+    <tr>
+      <td><span>Ream (Input) </span></td>
+      <td><input type="number" id="reaminput" class="rim"/></td>
+  </tr>
+
+    <td><span>Book Cover </span></td>
+    <td> <div>
+        <input type="radio" id="black" name="printing" value="200">
+        <label for="black">Hard Cover</label>
+      </div>
+  
+  
+      <div>
+        <input type="radio" id="cmyk" name="printing" value="300">
+        <label for="cmyk">Soft Cover</label>
+      </div>
+    
+      <div>
+        <input type="radio" id="black" name="printing" value="200">
+        <label for="black">Diary Cover</label>
+      </div>
+    </td>
+</tr>  
+
+    </table>
+
+    <!-- paper material -->
+
+<p><b>Paper Material</b></p>
+
+<table style="width:100%">
+    <tr>
+      <th>Simili</th>
+      <th>Art Paper</th>
+      <th>Art Card</th> 
+    
+    </tr>
+    <tr>
+      <td> <input type="checkbox" name="display"> 70 gsm <input type="text"></td>
+      <td> <input type="checkbox" name="display"> 105 gsm <input type="text"></td>
+      <td> <input type="checkbox" name="display"> 210 gsm <input type="text"></td>
+    </tr>
+    <tr>
+      <td> <input type="checkbox" name="display"> 80 gsm <input type="text"></td>
+      <td> <input type="checkbox" name="display"> 128 gsm <input type="text"></td>
+      <td> <input type="checkbox" name="display"> 230 gsm <input type="text"></td>
+    </tr>
+    <tr>
+      <td> <input type="checkbox" name="display"> 100 gsm <input type="text"></td>
+      <td> <input type="checkbox" name="display"> 150 gsm <input type="text"></td>
+      <td> <input type="checkbox" name="display"> 260 gsm <input type="text"></td>
+    </tr>
+     <tr>
+      <td> <input type="checkbox" name="display"> 120 gsm <input type="text"></td>
+      <td> <input type="checkbox" name="display"> 157 gsm <input type="text"></td>
+      <td> <input type="checkbox" name="display"> 310 gsm <input type="text"></td>
+    </tr>
+     <tr>
+      <td><input type="checkbox" name="display"> 140 gsm <input type="text"></td>
+      <td> <input type="checkbox" name="display"> 190 gsm <input type="text"></td>
+      <td> <input type="checkbox" name="display"> 330 gsm  <input type="text"></td>
+    </tr>
+  </table>
+
+<p><input type="checkbox" id="other" name="display" value="other">
+<label for="other"> Other (remark)</label> &nbsp; &nbsp; &nbsp; &nbsp; <input type="text"></p>
+
+<p><b>Finishing</b></p>
+
+<form name ="finishingPrice">
+<table style="width:100%">
+    
+  <tr>
+    <td> <input name="choice" onchange="calculateFinishing()" id="0.028" value="0.028" type="checkbox"> UV Varnish</td>
+    <td> <input name="choice" onchange="calculateFinishing()" id="0.038" value="0.038" type="checkbox"> Gloss Lamination</td>
+    <td> <input name="choice" onchange="calculateFinishing()" id="0.045" value="0.045" type="checkbox"> Matte Lamination</td>
+  </tr>
+  <tr>
+    <td> <input name="choice" onchange="calculateFinishing()" id="0.052" value="0.052" type="checkbox"> Spot UV</td>
+    <td> <input name="choice" onchange="calculateFinishing()" id="0.038" value="0.038" type="checkbox"> Die Cut</td>
+    <td> <input name="choice" onchange="calculateFinishing()" id="0.038" value="0.038" type="checkbox"> Hotstamping</td>
+  </tr>
+  <tr>
+    <td> <input name="choice" onchange="calculateFinishing()" id="100" value="80" type="checkbox"> Emboss</td>
+    <td> <input name="choice" onchange="calculateFinishing()" id="0.038" value="0.038" type="checkbox"> Padding</td>
+    <td> <input name="choice" onchange="calculateFinishing()" id="0.038" value="0.038" type="checkbox"> Perfect Bind</td>
+  </tr>
+   <tr>
+    <td> <input name="choice" onchange="calculateFinishing()" id="0.038" value="0.038" type="checkbox"> Lock Bind</td>
+    <td> <input name="choice" onchange="calculateFinishing()" id="0.038" value="0.038" type="checkbox"> Wire o</td>
+    <td> <input name="choice" onchange="calculateFinishing()" id="0.038" value="0.038" type="checkbox"> Stitch</td>
+  </tr>
+   <tr>
+    <td><input name="choice" onchange="calculateFinishing()" id="0.038" value="0.038" type="checkbox"> Spiral</td>
+    <td> <input name="choice" onchange="calculateFinishing()" id="0.038" value="0.038"  type="checkbox"> Pin Bind</td>
+    <td> <input name="choice" onchange="calculateFinishing()" id="0.038" value="0.038"  type="checkbox"> Hard Cover</td>
+  </tr>
+  <tr>
+      <td><input name="choice" onchange="calculateFinishing()" id="0.038" value="0.038" type="checkbox"> Perforated Line</td>
+      <td> <input name="choice" onchange="calculateFinishing()" id="0.038" value="0.038" type="checkbox"> Creasing Line</td>
+      <td> <input type="checkbox"> <input value="Numbering" type="text"></td>
+    </tr>
+</table>
+
+<p> <b><td>Finishing Price (RM) &nbsp; <input name="total" ></td></b></p>
+  </form>
+
+</fieldset>
+<p>
+<fieldset><legend><h2>Offset</h2></legend>
+
+  <table>
+
+    <!-- title -->
+    <tr>   <th width="150"></th>
+      <th></th>
+  </tr>
+  
+  <tr>
+    <td><span>Section </span></td>
+    <td>: <span type="text" class='printing' id="specification"></span></td>
+    </tr> 
+    
+    <tr>
+    <td><span>Ream </span></td>
+    <td>: <span type="text"  class='rim' id="rim"></span></td>
+    </tr>
+    
+    <tr>
+    <td><span>Plate </span></td>
+    <td>: <span type="text" class='plate' id="plate"></span></td>
+    </tr>
+
+    <tr>
+      <td><span>Balance Pages </span></td>
+      <td>: <span type="text" class='balpages' id="balpages"></span></td>
+      </tr>
+
+    <tr>
+      <td><span> Plate (Komori) </span></td>
+      <td>: <span type="text" id="platefloatkomori"></span></td>
+      </tr>
+  
+      <tr>
+      <td><span> Plate (GTO) </span></td>
+      <td>: <span type="text" id="platefloatgto"></span></td>
+      </tr>
+
+  </table>
+        
+</fieldset></p>
+
+<p><fieldset><legend> <h2>Costing</h2></legend>
+
+  <!-- paper content -->
+  <!-- printing charges content -->
+
+
+<table>
+
+  <!-- title -->
+  <tr>   <th width="150"></th>
+    <th></th>
+</tr>
+
+<td><span>Printing Cost </span></td>
+<td> <div>
+  <select name="printing" id="printingPrice" class='printingPrice' onchange="content()">
+      <option value="10">RM 10</option>
+      <option value="15">RM 15</option>
+      <option value="20">RM 20</option>
+      <option value="25">RM 25</option>
+      <option value="30">RM 30</option>
+      <option value="40">RM 40</option>
+      <option value="50">RM 50</option> 
+</select>
+</div></td>
+</tr> 
+
+<tr>
+<td><span>Printing Cost Content </span></td>
+<td>RM <span type="text" class='printing' id="printing"></span></td>
+</tr> 
+
+<tr>
+  <td><span>Printing Cost Cover  </span></td>
+  <td>RM <span type="text" class='plateCover' id="plateCover" onchange="plateCover()"></span></td>
+  </tr>
+
+<tr>
+<td><span>Plate Cost Cover </span></td>
+<td>RM <span type="text" class='cover' id="cover"></span></td>
+</tr>
+
+<tr>
+<td><span>Card Cost Cover </span></td>
+<td>RM <span type="text" class='outerPrice' id="outerPrice"></span></td>
+</tr>
+
+<tr>
+  <td><span>Machine Plate </span></td>
+  <td><div>
+    <input type="radio" class='platePrice' id="platePricing" name="platePrice" value="12.50">
+    <label for="GTO">RM 12.50 (GTO)</label>
+  </div>
+  
+  
+  <div>
+    <input type="radio" class='platePrice' id="platePricing" name="platePrice" value="35">
+    <label for="k">RM 35.00 (KOMORI)</label>
+  </div></p> </td></td>
+  </tr>
+
+<tr>
+  <td><span>Plate Price </span></td>
+  <td>RM <span type="text" class='platePrice' id="platePrice" onchange="platePrice()"></span></td>
+  </tr>
+
+
+
+   <!-- printing charges content <tr>
+  <td><span>Plate (KOMORI) </span></td>
+  <td>RM <span type="text" id="platePriceK" class="platePriceK"></span>  </td>
+  </tr>   -->
+
+  <tr>
+    <td><span>Plate (GTO)</span></td>
+    <td>RM <span type="text" id="platePriceG" class="platePriceG"></span>  </td>
+    </tr>
+    
+
+  <tr>
+    <td><span>GTO Cover Printing</span></td>
+    <td>RM <span type="text" id="gtoCover" class="gtoCover"></span>  </td>
+    </tr>
+
+<tr>
+<td><span>Binding Price </span></td>
+<td>RM <span type="text" class='binding' id="binding" ></span></td>
+</tr>
+
+<tr>
+<td><span>Material Price </span></td>
+<td>RM <span type="text" class='materialPrice' id="materialPrice"></span></td>
+</tr>
+
+
+<tr>
+<td><span>Finishing Price </span></td>
+<td>RM <span type="text" class='finishing' id="finishing"></span></td>
+</tr>
+
+<tr>
+  <td><span>Mockup</span></td>
+  <td>RM <span type="text" class='mockup' id="mockup"></span></td>
+  </tr>
+
+<tr>
+  <td><span>Designing </span></td>
+  <td><input type="number" id="design"></td>
+  </tr>
+
+  <tr>
+    <td><span>Miscellaneous </span></td>
+    <td><input type="number" id="misc"></td>
+    </tr>
+
+<tr>
+<td><span>Transportation </span></td>
+<td><input type="number" id="transport"></td>
+</tr>
+
+
+<td><span>Delivery Cost </span></td>
+<td> <div>
+  <select name="deliveryCost" id="deliveryPrice" class='deliveryPrice' onchange="deliveryCost()">
+      <option value="500">Perak</option>
+      <option value="300">Negeri Sembilan</option>
+      <option value="300">Melaka</option>
+      <option value="700">Johor</option>
+      <option value="80">Klang Valley</option>
+      <option value="800">Utara</option>
+      <option value="800">Pantai Timur</option> 
+    </select>  &nbsp;  &nbsp; RM <span type="text" id="delivery" class='delivery'></span>
+</div></td>
+</tr> 
+
+<tr>
+  <td><span>Markup</span></td>
+  <td><div>
+    <input type="radio" class='markupPrice' id="markupPricing" name="markupPrice" value="18">
+    <label for="18">18 %</label>
+
+    <input type="radio" class='markupPrice' id="markupPricing" name="markupPrice" value="20">
+    <label for="20">20 %</label>
+
+    <input type="radio" class='markupPrice' id="markupPricing" name="markupPrice" value="30">
+    <label for="30">30 %</label> &nbsp;&nbsp; &nbsp; RM <span type="text" id="totalmarkup" onchange="calculate_total_price()"></span></td>
+  </div>
+  </tr>
+
+<tr>
+  <td><span><p><b><h3>Price</h3></b></p></span> </td>
+  <td>RM <span type="text" id="sum" class='sum' onchange="calculate_total_price()"></span></td>
+</tr>
+
+
+
+<tr>
+  <td><span><p><b><h3>Total Price</h3></b></p></span> </td>
+  <td>RM <span type="text" id="totalprice" onchange="calculate_total_price()"></span></td>
+</tr>
+
+<tr>
+  <td><span><p><b><h3>Unit Price</h3></b></p></span> </td>
+  <td>RM <span type="text" id="unit" onchange="calculate_total_price()"></span></td>
+</tr>
+
+</table>
+
+  
+  <td>
+    <p>  <button onclick="calculate_total_price()">Calculate</button></p>
+
+<input type = "button" value = "Reset data" id="tabah" onClick = "clearButton()"/>  
+<p>  <button onclick="display_price()">Submit</button></p>
+
+  </fieldset></p></div>
+
+
+    <!-- calculation -->
+
+    <script>
+
+        /* section calculation */
+    
+        $(document).ready(function(){
+      $("#item").on('input', '.specification', function () {
+             var section = 0;
+           
+             $("#item .specification").each(function () {
+                 var get_section_value = $(this).val();
+                 if ($.isNumeric(get_section_value)) {
+                    section += parseFloat(get_section_value) / 16 ;
+                    }                  
+                  });
+                    $("#specification").html(section);
+             });
+      });
+    
+        /* rim calculation */
+
+$("#item").on('input', '.rim', function () {
+  var rim = 0 ;     
+  var mukasurat = document.getElementById("mukasurat").value ;
+  totalQuantity = Number(document.getElementById("qty").value);
+  extraQuantity = Number(document.getElementById("extraqty").value);   
+  quantity = totalQuantity + extraQuantity;
+
+  totalSection = mukasurat / 16;
+  satuRim = 1000;
+  jumlahRim = (quantity * totalSection) / 1000;
+
+  // check if #reaminput has a value
+  if ($("#reaminput").val()) {
+    rim = Number($("#reaminput").val());
+  } else {
+    $("#item .rim").each(function () {
+      var get_rim_value = $(this).val();
+      if ($.isNumeric(get_rim_value)) {
+        rim = Math.round(jumlahRim);
+      }                  
+    });
+  }
+  
+  $("#rim").html(rim);
+});
+            
+           /* plate calculation */
+           function calculate_plate()
+              {
+             var mukasurat = document.getElementById("mukasurat").value ;
+             section = mukasurat / 16;
+             var num1 = 2;
+             var num2 = 4;  
+         
+         var plateNumber = [4,8,16,32];
+         let tplate = 0; // baki buku after tolak
+         let countPlate = 4;
+         var sumGplate = 0; // plate gto
+         var sumKplate = 0; // plate komori
+         var plate = 0;
+
+         isection = Math.trunc(section) ; /* integer */
+         dsection = section - Math.floor(section); /* float */
+         totalbalpage = dsection * 16 ; /* display decimal balance pages*/
+         fplate = dsection * 16 ; /* float value to get page number */ // baki page
+
+         psection = isection * num1 * num2 ; /* float value */
+         fsection = section * num1 * num2 ; /* integer value */
+
+    if(typeof section == 'number' && !isNaN(section)){
+    
+    // check if it is integer / float
+    if (Number.isInteger(section)) {
+      plate = fsection ; /* plate in int */
+    }
+    else {
+      plate = psection ; /* plate in float */
+      
+    }
+    document.getElementById("plate").innerHTML = plate ;
+
+    // cari baki page & plate
+    //value will be use to get num of plate
+    if (fplate > 8){
+            //sumKpage = 8;
+            //sumGpage = fplate - 8;
+            roundGpage = Math.round((fplate - 8)/2);
+            sumGplate = roundGpage*4;
+            sumKplate = 4;
+          }
+          else if (fplate == 7 || fplate == 8){
+            sumKpage = fplate;
+            sumKplate = 4;
+            sumGplate = 0;
+          } 
+          else if (fplate <= 6 && fplate > 0){
+            //sumGpage = fplate;
+            roundGpage = fplate/2; 
+            sumGplate = Math.round(roundpage*4);
+          }
+          
+          var platekomori = 0;
+          
+          if (sumKplate) {
+          
+          platekomori = sumKplate + plate ;
+          
+          }
+          
+          else {
+          platekomori = plate ;
+          }
+          
+          
+
+    document.getElementById("balpages").innerHTML = totalbalpage;
+   document.getElementById("platefloatkomori").innerHTML = sumKplate ;
+    document.getElementById("platefloatgto").innerHTML = sumGplate;
+
+ //   document.getElementById("platePriceK").innerHTML = sumKplate * 35 ; 
+    document.getElementById("platePriceG").innerHTML = sumGplate * 12.50 ; 
+}
+}
+
+         /* plate price aka machine plate */
+
+         $("#item").on('input', '.rim', function () {
+
+          var mukasurat = document.getElementById("mukasurat").value ;
+             section = mukasurat / 16;
+             var num1 = 2;
+             var num2 = 4;  
+         
+         var plateNumber = [4,8,16,32];
+         let tplate = 0; // baki buku after tolak
+         let countPlate = 4;
+         var sumGplate = 0; // plate gto
+         var sumKplate = 0; // plate komori
+         var plate = 0;
+
+         isection = Math.trunc(section) ; /* integer */
+         dsection = section - Math.floor(section); /* float */
+         totalbalpage = dsection * 16 ; /* display decimal balance pages*/
+         fplate = dsection * 16 ; /* float value to get page number */ // baki page
+
+         psection = isection * num1 * num2 ; /* float value */
+         fsection = section * num1 * num2 ; /* integer value */
+
+    if(typeof section == 'number' && !isNaN(section)){
+    
+    // check if it is integer / float
+    if (Number.isInteger(section)) {
+      plate = fsection ; /* plate in int */
+    }
+    else {
+      plate = psection ; /* plate in float */
+      
+    }
+    document.getElementById("plate").innerHTML = plate ;
+
+    // cari baki page & plate
+    //value will be use to get num of plate
+    if (fplate > 8){
+            //sumKpage = 8;
+            //sumGpage = fplate - 8;
+            roundGpage = Math.round((fplate - 8)/2);
+            sumGplate = roundGpage*4;
+            sumKplate = 4;
+          }
+          else if (fplate == 7 || fplate == 8){
+            sumKpage = fplate;
+            sumKplate = 4;
+            sumGplate = 0;
+          } 
+          else if (fplate <= 6 && fplate > 0){
+            //sumGpage = fplate;
+            roundGpage = fplate/2; 
+            sumGplate = Math.round(roundpage*4);
+          }
+        }
+
+      let pricing = 0;
+      $('input[name="platePrice"]').on("click", function () {
+             pricing = parseFloat($('input[name="platePrice"]:checked').val()) ;
+             document.getElementById("platePrice").innerHTML = (plate + sumKplate) * pricing ;/* plate cover */
+            plateCoverValue = (8 * pricing * (totalQuantity/1000/2));
+  document.getElementById("plateCover").innerHTML = plateCoverValue;
+             
+         });
+      })
+
+
+      /* komori 
+      document.getElementById("platePriceK").innerHTML = sumplate * 35 ; */
+    
+    
+          /* content & cover printing calculation */
+    
+           function content(){
+            totalQuantity = Number(document.getElementById("qty").value);
+             extraQuantity = Number(document.getElementById("extraqty").value);   
+             quantity = totalQuantity + extraQuantity;
+            var mukasurat = document.getElementById("mukasurat").value ;
+             section = mukasurat / 16;
+             var num1 = 2;
+             var num2 = 4;  
+         
+         var plateNumber = [4,8,16,32];
+         let tplate = 0; // baki buku after tolak
+         let countPlate = 4;
+         var sumGplate = 0; // plate gto
+         var sumKplate = 0; // plate komori
+         var plate = 0;
+
+         isection = Math.trunc(section) ; /* integer */
+         dsection = section - Math.floor(section); /* float */
+         totalbalpage = dsection * 16 ; /* display decimal balance pages*/
+         fplate = dsection * 16 ; /* float value to get page number */ // baki page
+
+         psection = isection * num1 * num2 ; /* float value */
+         fsection = section * num1 * num2 ; /* integer value */
+
+         var printing = document.getElementById("printingPrice") ;
+         var printingPrice = Math.floor(printing.options[printing.selectedIndex].value);
+
+    if(typeof section == 'number' && !isNaN(section)){
+    
+    // check if it is integer / float
+    if (Number.isInteger(section)) {
+      plate = fsection ; /* plate in int */
+    }
+    else {
+      plate = psection ; /* plate in float */
+      
+    }
+    document.getElementById("plate").innerHTML = plate ;
+    
+
+    // cari baki page & plate
+    //value will be use to get num of plate
+    if (fplate > 8){
+            //sumKpage = 8;
+            //sumGpage = fplate - 8;
+            roundGpage = Math.round((fplate - 8)/2);
+            sumGplate = roundGpage*4;
+            sumKplate = 4;
+          }
+          else if (fplate == 7 || fplate == 8){
+            sumKpage = fplate;
+            sumKplate = 4;
+            sumGplate = 0;
+          } 
+          else if (fplate <= 6 && fplate > 0){
+            //sumGpage = fplate;
+            roundGpage = fplate/2; 
+            sumGplate = Math.round(roundpage*4);
+          }
+        }
+
+        if (sumGplate){
+          gtoNewCover = 4 * printingPrice ;
+          }
+          
+              var platekomori = 0;
+          
+          if (sumKplate) {
+          
+          platekomori = sumKplate + plate ;
+          
+          }
+          
+          else {
+          platekomori = plate ;
+          }
+          
+          /* find a solution why it display round up number instead an actual number */
+          
+          document.getElementById("printing").innerHTML =  platekomori * printingPrice * (totalQuantity / 1000) ;
+            document.getElementById("cover").innerHTML = 8 * 40 ;
+            document.getElementById("gtoCover").innerHTML = gtoNewCover ;
+            
+             }
+    
+              /* card calculation */
+              $("#item").on('input', '.rim', function () {
+              var outerPrice = 0;         
+             totalQuantity = Number(document.getElementById("qty").value);
+             extraQuantity = Number(document.getElementById("extraqty").value);   
+             quantity = totalQuantity + extraQuantity;
+             outerCover = quantity / 400 /* 400 is depend on paper size */
+           
+             $("#item .rim").each(function () {
+                 var get_outerPrice_value = $(this).val();
+                 if ($.isNumeric(get_outerPrice_value)) {
+                  outerCover = ((totalQuantity / 2) + 250) / 400 ; 
+                  outerTotal = outerCover * 99.8 ;
+                  outerPrice = outerTotal.toFixed(2);
+                    }                  
+                  });
+                    $("#outerPrice").html(outerPrice);
+             });
+                     
+    
+             /* calculate finishing */
+    
+             function calculateFinishing()
+    {
+     document.finishingPrice.total.value = '';
+      var finishing = 0;
+      totalQuantity = Number(document.getElementById("qty").value);
+             extraQuantity = Number(document.getElementById("extraqty").value);   
+             quantity = totalQuantity + extraQuantity;
+              newQuantity = quantity - 100;
+              embossBlock = 80
+             
+        for (i=0;i<document.finishingPrice.choice.length;i++) {
+          if (document.finishingPrice.choice[i].checked) {
+            finishingValue = ((7 * 10) / 100 * parseFloat(document.finishingPrice.choice[i].value)) * newQuantity;
+            finishing = Number(finishingValue.toFixed(3)); 
+          }
+          else if (document.getElementById('0.052').checked){        
+            finishingValue = (((7 * 10) / 100 * parseFloat(document.getElementById('0.052').value)) * newQuantity) * 2 + 250;
+            finishing = Number(finishingValue.toFixed(3));  
+          }
+          else if (document.getElementById('0.028').checked){        
+            finishingValue = (((7 * 10) / 100 * parseFloat(document.getElementById('0.028').value)) * newQuantity) * 2 + 250;
+            finishing = Number(finishingValue.toFixed(3));  
+          }
+          else if (document.getElementById('100').checked == quantity > 400) {        
+            finishingValue = embossBlock + 55 ;
+            finishing = Number(finishingValue.toFixed(3));  
+          }
+          else if  (document.getElementById('100').checked == quantity <= 300) {        
+            finishingValue = embossBlock + 100 ;
+            finishing = Number(finishingValue.toFixed(3));  
+          }
+          else if (document.getElementById('0.045').checked){        
+            finishingValue = (((7 * 10) / 100) * parseFloat(document.getElementById('0.045').value)) * newQuantity;
+            finishing = Number(finishingValue.toFixed(3));  
+          }
+        }
+        document.finishingPrice.total.value += finishing;
+        finishing = Number(finishingValue.toFixed(3));
+
+        document.getElementById("finishing").innerHTML = finishing;
+      }
+  
+/* calculate mockup */
+function calculateMockup() {
+  var mockupPrice = 0.60;
+  var mukasurat = Number(document.getElementById("mukasurat").value);
+  var mockup = mukasurat * mockupPrice;
+  $("#mockup").html(mockup.toFixed(2));
+}
+
+$("#mukasurat").on("input", function() {
+  calculateMockup();
+});
+
+
+
+    
+           /* calculate binding */
+    
+           $("#item").on('input', '.rim', function calculateBinding() {
+    var binding = 0;
+    var mukasurat = document.getElementById("mukasurat").value ;
+    var totalSection = mukasurat / 16; // calculate total number of sections
+    var cover = 1;
+    var cost = 0.03;
+    var totalQuantity = Number(document.getElementById("qty").value);
+    var extraQuantity = Number(document.getElementById("extraqty").value);
+    var quantity = totalQuantity + extraQuantity;
+    var bindingAmount;
+
+    if (Number.isInteger(totalSection)) {
+        // totalSection is an integer
+        bindingAmount = (totalSection + 1 + cover) * cost; // Add 1 to totalSection for the cover
+    } else {
+        // totalSection has a decimal value
+        bindingAmount = (Math.floor(totalSection) + 1 + cover) * cost; // Add 2 to account for the partial section and the cover
+    }
+
+    $("#item .rim").each(function () {
+        var get_binding_value = $(this).val();
+        if ($.isNumeric(get_binding_value)) {
+          binding = Number((totalQuantity + 50) * bindingAmount).toFixed(2);             
+         //   binding = Math.round(bindingValue);
+        } else if (binding < 420) {
+            binding = "420";
+        }
+    });
+    $("#binding").html(binding);
+});
+
+
+    
+          /* material */
+$("#item").on('input', '.rim', function calculateMaterial() {
+  var materialPrice = 0 ;     
+  var mukasurat = document.getElementById("mukasurat").value ;
+  totalQuantity = Number(document.getElementById("qty").value);
+  extraQuantity = Number(document.getElementById("extraqty").value);   
+  quantity = totalQuantity + extraQuantity;
+  material = Number(document.getElementById("material").value); 
+
+  totalSection = mukasurat / 16;
+  satuRim = 1000;
+  jumlahRim = (quantity * totalSection) / 1000 ;
+  rim = Math.round(jumlahRim);
+
+  // check if #reaminput has a value
+  if ($("#reaminput").val()) {
+    rim = Number($("#reaminput").val());
+  }
+
+  materialPrice = rim * material  ;
+  material = materialPrice.toFixed(2);
+
+  $("#item .rim").each(function () {
+    var get_materialPrice_value = $(this).val();
+    if ($.isNumeric(get_materialPrice_value)) {
+      material;
+    }                  
+  });
+  $("#materialPrice").html(material);
+});
+
+
+                   /* delivery */
+function deliveryCost (){
+    var delivery = document.getElementById("deliveryPrice") ;
+    var deliveryPrice = delivery.options[delivery.selectedIndex].value; /* malaysia */
+    document.getElementById("delivery").innerHTML = deliveryPrice;
+}
+    
+              /* calculate total price */
+    
+              function calculate_total_price()
+              {
+                var totalQuantity = Number(document.getElementById("qty").value);
+    var extraQuantity = Number(document.getElementById("extraqty").value);
+    var quantity = totalQuantity + extraQuantity;
+                var mukasurat = document.getElementById("mukasurat").value ;
+             section = mukasurat / 16;
+             var num1 = 2;
+             var num2 = 4;  
+         
+         var plateNumber = [4,8,16,32];
+         let tplate = 0; // baki buku after tolak
+         let countPlate = 4;
+         var sumGplate = 0; // plate gto
+         var sumKplate = 0; // plate komori
+         var plate = 0;
+
+         isection = Math.trunc(section) ; /* integer */
+         dsection = section - Math.floor(section); /* float */
+         totalbalpage = dsection * 16 ; /* display decimal balance pages*/
+         fplate = dsection * 16 ; /* float value to get page number */ // baki page
+
+         psection = isection * num1 * num2 ; /* float value */
+         fsection = section * num1 * num2 ; /* integer value */
+
+    if(typeof section == 'number' && !isNaN(section)){
+    
+    // check if it is integer / float
+    if (Number.isInteger(section)) {
+      plate = fsection ; /* plate in int */
+    }
+    else {
+      plate = psection ; /* plate in float */
+      
+    }
+    document.getElementById("plate").innerHTML = plate ;
+
+    // cari baki page & plate
+    //value will be use to get num of plate
+    if (fplate > 8){
+            //sumKpage = 8;
+            //sumGpage = fplate - 8;
+            roundGpage = Math.round((fplate - 8)/2);
+            sumGplate = roundGpage*4;
+            sumKplate = 4;
+          }
+          else if (fplate == 7 || fplate == 8){
+            sumKpage = fplate;
+            sumKplate = 4;
+            sumGplate = 0;
+          } 
+          else if (fplate <= 6 && fplate > 0){
+            //sumGpage = fplate;
+            roundGpage = fplate/2; 
+            sumGplate = Math.round(roundpage*4);
+          }
+        }
+        
+        // untuk platekomori 
+        
+              var platekomori = 0;
+          
+          if (sumKplate) {
+          
+          platekomori = sumKplate + plate ;
+          
+          }
+          
+          else {
+          platekomori = plate ;
+          }
+
+        // add plate 
+        komoriPlate = sumKplate * 40 ;
+        gtoPlate = sumGplate * 12.50 ; 
+
+
+        var printing = document.getElementById("printingPrice") ;
+        var printingPrice = printing.options[printing.selectedIndex].value;  /* printing cost */
+
+        /* printing */
+        printing = platekomori * printingPrice * (totalQuantity / 1000) ;
+
+        /* (plate + sumKplate) * (printingPrice * totalQuantity / 1000) */
+
+         let platePricing = 0;
+         platePricing = parseFloat($('input[name="platePrice"]:checked').val()) ; /* plate price */
+
+         /* plate */
+         totalPlate = platekomori * platePricing ;
+
+         /*plate cover value */
+         plateCoverValue = (8 * platePricing * (totalQuantity/1000/2));
+         
+        
+        /* cover */
+        coverGto = 4 * printingPrice ;
+       // gtoNewCover = 4 * printingPrice ;
+
+        /* cover art card */
+        outerCover = ((totalQuantity / 2) + 250) / 400 ; 
+                  outerPrice = outerCover * 99.8 ;
+               /*   outerPrice = outerTotal.toFixed(2); */
+
+        printingCostCover = 8 * 40 ;
+
+          /* binding */
+          var binding = 0;
+    var mukasurat = document.getElementById("mukasurat").value ;
+    var totalSection = mukasurat / 16; // calculate total number of sections
+    var cover = 1;
+    var cost = 0.03;
+    var totalQuantity = Number(document.getElementById("qty").value);
+    var extraQuantity = Number(document.getElementById("extraqty").value);
+    var quantity = totalQuantity + extraQuantity;
+    var bindingAmount;
+
+    if (Number.isInteger(totalSection)) {
+        // totalSection is an integer
+        bindingAmount = (totalSection + 1 + cover) * cost; // Add 1 to totalSection for the cover
+    } else {
+        // totalSection has a decimal value
+        bindingAmount = (Math.floor(totalSection) + 1 + cover) * cost; // Add 2 to account for the partial section and the cover
+    }
+             binding = bindingAmount * (totalQuantity + 50) ;
+
+             if (binding < 420){
+              binding = Number("420");
+             } else if (binding >= 420 ){
+             binding ;
+             }
+
+               /* material */
+var materialPrice = 0 ;
+var mukasurat = document.getElementById("mukasurat").value ;
+var totalQuantity = Number(document.getElementById("qty").value);
+var extraQuantity = Number(document.getElementById("extraqty").value);
+var quantity = totalQuantity + extraQuantity;
+var satuRim = 1000;
+var totalSection = mukasurat / 16;
+var jumlahRim = (quantity * totalSection) / satuRim;
+var material = Number(document.getElementById("material").value);
+
+if ($("#reaminput").val()) {
+var rim = Number($("#reaminput").val());
+materialPrice = rim * material;
+} else {
+var rim = Math.round(jumlahRim);
+materialPrice = rim * material;
+}
+
+$("#item .rim").each(function () {
+var get_materialPrice_value = $(this).val();
+if ($.isNumeric(get_materialPrice_value)) {
+material;
+}
+});
+$("#materialPrice").html(materialPrice.toFixed(2));
+    
+                /* finishing */
+                document.finishingPrice.total.value = '';
+                var finishing = 0;
+              newQuantity = quantity - 100;
+              embossBlock = 80
+             
+        for (i=0;i<document.finishingPrice.choice.length;i++) {
+          if (document.finishingPrice.choice[i].checked) {
+            finishingValue = ((7 * 10) / 100 * parseFloat(document.finishingPrice.choice[i].value)) * newQuantity;
+            finishing = Number(finishingValue.toFixed(3)); 
+      
+          }
+          else if (document.getElementById('0.052').checked){        
+            finishingValue = (((7 * 10) / 100 * parseFloat(document.getElementById('0.052').value)) * newQuantity) * 2 + 250;
+            finishing = Number(finishingValue.toFixed(3));  
+          }
+          else if (document.getElementById('0.028').checked){        
+            finishingValue = (((7 * 10) / 100 * parseFloat(document.getElementById('0.028').value)) * newQuantity) * 2 + 250;
+            finishing = Number(finishingValue.toFixed(3));  
+          }
+          else if (document.getElementById('100').checked == quantity > 400) {        
+            finishingValue = embossBlock + 55 ;
+            finishing = Number(finishingValue.toFixed(3));  
+          }
+          else if  (document.getElementById('100').checked == quantity <= 300) {        
+            finishingValue = embossBlock + 100 ;
+            finishing = Number(finishingValue.toFixed(3));  
+          }
+          else if (document.getElementById('0.045').checked){        
+            finishingValue = (((7 * 10) / 100) * parseFloat(document.getElementById('0.045').value)) * newQuantity;
+            finishing = Number(finishingValue.toFixed(3));  
+          }
+        }
+    
+         /* design */
+         design = Number(document.getElementById("design").value);
+
+            /* transportation */
+            transportation = Number(document.getElementById("transport").value); 
+
+           /* mockup */
+        mockupPrice = 0.60 ;
+        
+        mockup = mukasurat * mockupPrice;
+    
+            /* block */
+            block = 250;
+    
+            /* delivery */
+            var delivery = document.getElementById("deliveryPrice") ;
+            var deliveryPrice = Number(delivery.options[delivery.selectedIndex].value); /* malaysia */
+     
+            /* miscellaneous */
+            miscellaneous = Number(document.getElementById("misc").value);
+    
+            /* before markup */
+            total =  printing + printingCostCover + totalPlate + binding + materialPrice + finishing + design + mockup + miscellaneous + transportation +  deliveryPrice + outerPrice + plateCoverValue;   
+            sum = Number(total.toFixed(2)); 
+    
+            document.getElementById("sum").innerHTML = sum;
+
+            /* after markup */
+         let markupPrice = 0;
+         markupPrice = parseFloat($('input[name="markupPrice"]:checked').val()) ; /* markup price */
+
+         totalMarkup = (markupPrice/100) * sum ;
+         markup = Number(totalMarkup.toFixed(2));
+
+         document.getElementById("totalmarkup").innerHTML = markup;
+
+         /* total price */ 
+         totalPrice = sum + markup ;
+         price = totalPrice.toFixed(2);
+
+         document.getElementById("totalprice").innerHTML =  price ;  
+
+            /* unit price */
+            unitPrice = totalPrice / totalQuantity;
+            unit = unitPrice.toFixed(2);
+
+            document.getElementById("unit").innerHTML =  unit;           
+                
+              }  
+              
+                  /* clear button */
+                  function clearButton(){
+                    document.getElementById("tabah").reset();
+                  }
+    
+                  
+            </script>
+    </body>
+    </html>
